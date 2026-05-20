@@ -22,3 +22,28 @@ binders.forEach(function(binder) {
         binder.classList.add('active');
     });
 });
+
+const form = document.getElementById('add-form');
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('input-name').value;
+    const subject = document.getElementById('input-subject').value;
+    const due = document.getElementById('input-due').value;
+    const priority = document.getElementById('input-priority').value;
+
+    const tbody = document.querySelector('tbody');
+    const newRow = document.createElement('tr');
+
+    newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${subject}</td>
+        <td>${due}</td>
+        <td><span class="dot dot-${priority}"></span>${priority}</td>
+    `;
+
+    tbody.appendChild(newRow);
+
+    form.reset();
+});
