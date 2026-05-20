@@ -1,3 +1,9 @@
+let assignments = JSON.parse(localStorage.getItem('assignments')) || [];
+
+function saveAssignments() {
+    localStorage.setItem('assignment', JSON.stringify(assignments));
+}
+
 const binders = document.querySelectorAll('.binder-wrapper');
 const rows = document.querySelectorAll('tbody tr');
 
@@ -33,9 +39,12 @@ form.addEventListener('submit', function(event) {
     const due = document.getElementById('input-due').value;
     const priority = document.getElementById('input-priority').value;
 
+    const newAssignment = { name: name, subject: subject, due: due, priority: priority };
+    assignments.push(newAssignment);
+    saveAssignments();
+
     const tbody = document.querySelector('tbody');
     const newRow = document.createElement('tr');
-
     newRow.innerHTML = `
         <td>${name}</td>
         <td>${subject}</td>
