@@ -1,7 +1,23 @@
 let assignments = JSON.parse(localStorage.getItem('assignments')) || [];
 
 function saveAssignments() {
-    localStorage.setItem('assignment', JSON.stringify(assignments));
+    localStorage.setItem('assignments', JSON.stringify(assignments));
+}
+
+function renderAssignments() {
+    const tbody = document.querySelector('tbody');
+    tbody.innerHTML = '';
+
+    assignments.forEach(function(assignment) {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>${assignment.name}</td>
+            <td>${assignment.subject}</td>
+            <td>${assignment.due}</td>
+            <td><span class="dot dot-${assignment.priority}"></span>${assignment.priority}</td>
+        `;
+        tbody.appendChild(newRow);
+    });
 }
 
 const binders = document.querySelectorAll('.binder-wrapper');
@@ -42,17 +58,9 @@ form.addEventListener('submit', function(event) {
     const newAssignment = { name: name, subject: subject, due: due, priority: priority };
     assignments.push(newAssignment);
     saveAssignments();
-
-    const tbody = document.querySelector('tbody');
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td>${name}</td>
-        <td>${subject}</td>
-        <td>${due}</td>
-        <td><span class="dot dot-${priority}"></span>${priority}</td>
-    `;
-
-    tbody.appendChild(newRow);
+    renderAssignments();
 
     form.reset();
 });
+
+renderAssignments();
