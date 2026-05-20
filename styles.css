@@ -36,6 +36,11 @@ body {
     cursor: pointer;
 }
 
+.binder-wrapper.active .binder {
+    transform: translateY(-12px);
+    filter: brightness(1.15);
+}
+
 .binder {
     width: 58px;
     height: 160px;

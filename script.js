@@ -16,5 +16,9 @@ binders.forEach(function(binder) {
                 row.style.display = 'none';
             }
         });
+        binders.forEach(function(b) {
+            b.classList.remove('active');
+        });
+        binder.classList.add('active');
     });
 });
