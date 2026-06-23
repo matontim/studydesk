@@ -1,8 +1,8 @@
 # StudyDesk
-Description
+A full-stack web application for planning study schedules and tracking coursework.
 
 ## Status
-In progress - building core UI and JavaScript functionality.
+In progress; building core UI and JavaScript functionality.
 
 ## Planned Features
 - Subject binder filtering
