@@ -1,4 +1,5 @@
 let assignments = JSON.parse(localStorage.getItem('assignments')) || [];
+let activeSubject = 'All'
 
 function saveAssignments() {
     localStorage.setItem('assignments', JSON.stringify(assignments));
@@ -38,7 +39,18 @@ function renderAssignments() {
         });
 
         tbody.appendChild(newRow);
-    });
+        });
+
+        const allRows = document.querySelectorAll('tbody tr');
+        allRows.forEach(function(row) {
+            if (activeSubject === 'All') {
+                row.style.display = '';
+            } else if (row.cells[2].textContent.toLowerCase() === activeSubject.toLowerCase()) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
 }
 
 function renderDueSoon() {
@@ -63,11 +75,46 @@ function renderDueSoon() {
     })
 }
 
+function renderBinders() {
+    const shelf = document.querySelector('.binder-shelf');
+    shelf.innerHTML = '';
+
+    const colors = ['binder-blue', 'binder-red', 'binder-green', 'binder-yellow', 'binder-purple', 'binder-orange'];
+    const subjects = ['All', ...new Set(assignments.map(function(a) { return a.subject; }))];
+
+    subjects.forEach(function(subject, index) {
+        const colorClass = subject === 'All' ? 'binder-blue' : colors[index % colors.length];
+
+        const wrapper = document.createElement('section');
+        wrapper.classList.add('binder-wrapper');
+        wrapper.innerHTML = `
+        <div class="binder ${colorClass}">
+            <div class="binder-ring"></div>
+            <div class="binder-ring"></div>
+            <div class="binder-ring"></div>
+        </div>
+        <div class="shelf-tag">${subject}</div>
+        `;
+        
+        wrapper.addEventListener('click', function() {
+            activeSubject = subject;
+            document.querySelectorAll('.binder-wrapper').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            wrapper.classList.add('active');
+            renderAssignments();
+        });
+
+        shelf.appendChild(wrapper);
+    });
+}
+
 const binders = document.querySelectorAll('.binder-wrapper');
 const rows = document.querySelectorAll('tbody tr');
 
 binders.forEach(function(binder) {
     binder.addEventListener('click', function() {
+        activeSubject = binder.querySelector('.shelf-tag').textContent;
         const subject = binder.querySelector('.shelf-tag').textContent;
 
         rows.forEach(function(row) {
@@ -102,9 +149,11 @@ form.addEventListener('submit', function(event) {
     assignments.push(newAssignment);
     saveAssignments();
     renderAssignments();
+    renderBinders();
 
     form.reset();
 });
 
 renderAssignments();
 renderDueSoon();
+renderBinders();

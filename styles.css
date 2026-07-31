@@ -168,6 +168,10 @@ p {
     border-collapse: collapse;
 }
 
+#input-subject {
+    text-transform: capitalize;
+}
+
 tr.done td {
     text-decoration: line-through;
     opacity: 0.5;
