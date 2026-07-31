@@ -29,6 +29,7 @@ function renderAssignments() {
             saveAssignments();
             renderAssignments();
         });
+
         const deleteBtn = newRow.querySelector('.delete-btn');
         deleteBtn.addEventListener('click', function() {
             assignments.splice(index, 1);
@@ -38,6 +39,28 @@ function renderAssignments() {
 
         tbody.appendChild(newRow);
     });
+}
+
+function renderDueSoon() {
+    const today = new Date();
+    const board = document.querySelector('.bulletin-board');
+    board.innerHTML = '<h2>Due Soon</h2>';
+
+    assignments.forEach(function(assignment) {
+        const dueDate = new Date(assignment.due);
+        const daysUntilDue = (dueDate - today) / (1000 * 60 * 60 * 24);
+
+        if (daysUntilDue <= 3 && daysUntilDue >= 0 && !assignment.done) {
+            const note = document.createElement('div');
+            note.classList.add('note');
+            note.innerHTML = `
+                <p>${assignment.due} </p>
+                <p>${assignment.name} </p>
+                <p>${assignment.subject} </p>
+            `;
+            board.appendChild(note);
+        }
+    })
 }
 
 const binders = document.querySelectorAll('.binder-wrapper');
@@ -84,3 +107,4 @@ form.addEventListener('submit', function(event) {
 });
 
 renderAssignments();
+renderDueSoon();
