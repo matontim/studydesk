@@ -16,6 +16,7 @@ function renderAssignments() {
             <td>${assignment.subject}</td>
             <td>${assignment.due}</td>
             <td><span class="dot dot-${assignment.priority}"></span>${assignment.priority}</td>
+            <td><button class="delete-btn">x</button></td>
         `;
 
         if (assignment.done) {
@@ -25,6 +26,12 @@ function renderAssignments() {
         const checkbox = newRow.querySelector('input');
         checkbox.addEventListener('change', function() {
             assignments[index].done = checkbox.checked;
+            saveAssignments();
+            renderAssignments();
+        });
+        const deleteBtn = newRow.querySelector('.delete-btn');
+        deleteBtn.addEventListener('click', function() {
+            assignments.splice(index, 1);
             saveAssignments();
             renderAssignments();
         });
