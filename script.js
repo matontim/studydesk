@@ -8,14 +8,27 @@ function renderAssignments() {
     const tbody = document.querySelector('tbody');
     tbody.innerHTML = '';
 
-    assignments.forEach(function(assignment) {
+    assignments.forEach(function(assignment, index) {
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
+            <td><input type="checkbox" ${assignment.done ? 'checked' : ''}></td>
             <td>${assignment.name}</td>
             <td>${assignment.subject}</td>
             <td>${assignment.due}</td>
             <td><span class="dot dot-${assignment.priority}"></span>${assignment.priority}</td>
         `;
+
+        if (assignment.done) {
+            newRow.classList.add('done');
+        }
+
+        const checkbox = newRow.querySelector('input');
+        checkbox.addEventListener('change', function() {
+            assignments[index].done = checkbox.checked;
+            saveAssignments();
+            renderAssignments();
+        });
+
         tbody.appendChild(newRow);
     });
 }

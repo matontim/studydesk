@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Patrick+Hand&display=swap');
 
+/* Background */
+
 body {
     margin: 0;
     padding: 20 px; /* maybe remove padding */
@@ -10,6 +12,8 @@ body {
     background: linear-gradient(180deg, #6b4422 0%, #5a3818 100%);
     padding: 20px 0 0;
 }
+
+/* Binder */
 
 .binder-shelf {
     display: flex;
@@ -67,6 +71,8 @@ body {
     border: 1px solid #888;
 }
 
+/* Shelf */
+
 .shelf-tag {
     background: #fffef0;
     border: 1px solid #c8a060;
@@ -94,6 +100,8 @@ body {
     gap: 24px;
     padding: 30px 40px;
 }
+
+/* Assignment Paper */
 
 .paper {
     background-color: #fffef0;
@@ -160,6 +168,11 @@ p {
     border-collapse: collapse;
 }
 
+tr.done td {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
 th {
     font-family: 'Patrick Hand', serif;
     color: #1a1a2e;
@@ -196,6 +209,8 @@ tr:nth-child(even) {
 .dot-high   { background: #c03020; }
 .dot-med    { background: #c09010; }
 .dot-low    { background: #2a8040; }
+
+/* Sidebar */
 
 .sidebar {
     display: flex;
