@@ -1,8 +1,10 @@
 # StudyDesk
-Description
+A full-stack web application for planning study schedules and tracking coursework.
 
 ## Status
-In progress - building core UI and JavaScript functionality.
+In progress; building core UI and JavaScript functionality.
+
+View live demo [here](https://matontim.github.io/studydesk/)
 
 ## Planned Features
 - Subject binder filtering
