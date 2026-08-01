@@ -1,0 +1,24 @@
+{
+  "name": "studydesk",
+  "version": "1.0.0",
+  "description": "A full-stack web application for planning study schedules and tracking coursework.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matontim/studydesk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/matontim/studydesk/issues"
+  },
+  "homepage": "https://github.com/matontim/studydesk#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
