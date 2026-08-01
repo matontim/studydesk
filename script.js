@@ -127,7 +127,8 @@ function renderWeekView() {
         if (isToday) dayE1.classList.add('today');
 
         const dayAssignments = assignments.filter(function(a) {
-            return a.due === day.toISOString().split('T')[0];
+            const dateStr = `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(2, '0')}-${String(day.getDate()).padStart(2, '0')}`;
+            return a.due === dateStr;
         });
 
         dayE1.innerHTML = `
@@ -149,6 +150,13 @@ function renderMonthView() {
     const year = today.getFullYear();
     const month = today.getMonth();
 
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    const monthHeader = document.createElement('div');
+    monthHeader.classList.add('cal-month-title');
+    monthHeader.textContent = `${monthNames[month]} ${year}`;
+    grid.appendChild(monthHeader);
+
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -168,7 +176,7 @@ function renderMonthView() {
 
     for (let d = 1; d <= lastDay.getDate(); d++) {
         const date = new Date(year, month, d);
-        const dateStr = date.toISOString().split('T')[0];
+        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
 
         const dayE1 = document.createElement('div');
         dayE1.classList.add('cal-day');
@@ -251,4 +259,3 @@ renderAssignments();
 renderDueSoon();
 renderBinders();
 renderWeekView();
-renderMonthView();

@@ -264,3 +264,46 @@ tr:nth-child(even) {
 .note:nth-child(odd):hover {
     transform: rotate(1deg) translateY(-4px);
 }
+
+/* CALENDAR */
+#calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    background-color: #fffef0;
+    padding: 20px;
+}
+
+.cal-month-title {
+    grid-column: 1 / -1;
+}
+
+.cal-header-cell {
+    text-align: center;
+    font-family: 'Special Elite', serif;
+    font-size: 11px;
+    color: #3a2010;
+    padding: 4px 0;
+}
+
+.cal-day {
+    text-align: center;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 12px;
+    padding: 4px 2px;
+    min-height: 36px;
+}
+
+.cal-day.today {
+    background: rgba(200, 216, 240, 0.4);
+    border-radius: 3px;
+}
+
+.cal-dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #c03020;
+    margin: 2px auto;
+}
