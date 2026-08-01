@@ -1,3 +1,5 @@
+let currentUser = null;
+
 document.getElementById('btn-login').addEventListener('click', async function() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
@@ -11,8 +13,10 @@ document.getElementById('btn-login').addEventListener('click', async function() 
     const data = await response.json();
 
     if (data.success) {
+        currentUser = username;
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('app').style.display = 'block';
+        loadAssignments();
     } else {
         document.getElementById('auth-message').textContent = data.message;
     }

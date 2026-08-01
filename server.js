@@ -42,3 +42,25 @@ app.post('/login', function(req, res) {
         res.json({ success: false, message: 'Invalid username or password' });
     }
 });
+
+app.get('/assignments/:username', function(reg, res) {
+    const users = JSON.parse(fs.readFileSync('users.json'));
+    const user = users.find(function(u) { return u.username === req.params.username; });
+    if (user) {
+        res.json({ success: true, assignments: user.assignments || [] });
+    } else {
+        res.json({ success: false, assignments: [] });
+    }
+});
+
+app.post('/assignments/:username', function(req, res) {
+    const users = JSON.parse(fs.readFileSync('users.json'));
+    const user = users.find(function(u) { return u.username === req.params.username; });
+    if (user) {
+        user.assignments = req.body.assignments;
+        fs.writeFileSync('users.json', JSON.stringify(users));
+        res.json({ success: true });
+    } else {
+        res.json({ success: false });
+    }
+});
