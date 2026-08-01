@@ -1,3 +1,53 @@
+document.getElementById('btn-login').addEventListener('click', async function() {
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+
+    const response = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+    } else {
+        document.getElementById('auth-message').textContent = data.message;
+    }
+});
+
+document.getElementById('btn-show-register').addEventListener('click', function() {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('register-form').style.display = 'block';
+});
+
+document.getElementById('btn-show-login').addEventListener('click', function() {
+    document.getElementById('register-form').style.display = 'none';
+    document.getElementById('login-form').style.display = 'block';
+});
+
+document.getElementById('btn-register').addEventListener('click', async function() {
+    const username = document.getElementById('reg-username').value;
+    const password = document.getElementById('reg-password').value;
+    console.log(username, password);
+
+    const response = await fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    });
+
+    const data = await response.json();
+    document.getElementById('auth-message').textContent = data.message;
+
+    if (data.success) {
+        document.getElementById('register-form').style.display = 'none';
+        document.getElementById('login-form').style.display = 'block';
+    }
+});
+
 let assignments = JSON.parse(localStorage.getItem('assignments')) || [];
 let activeSubject = 'All'
 
@@ -197,32 +247,6 @@ function renderMonthView() {
         grid.appendChild(dayE1);
     }
 }
-
-const binders = document.querySelectorAll('.binder-wrapper');
-const rows = document.querySelectorAll('tbody tr');
-
-binders.forEach(function(binder) {
-    binder.addEventListener('click', function() {
-        activeSubject = binder.querySelector('.shelf-tag').textContent;
-        const subject = binder.querySelector('.shelf-tag').textContent;
-
-        rows.forEach(function(row) {
-            const rowSubject = row.cells[1].textContent;
-
-            if (subject === 'All') {
-                row.style.display = '';
-            } else if (rowSubject === subject) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-        binders.forEach(function(b) {
-            b.classList.remove('active');
-        });
-        binder.classList.add('active');
-    });
-});
 
 const form = document.getElementById('add-form');
 
