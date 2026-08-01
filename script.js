@@ -109,6 +109,87 @@ function renderBinders() {
     });
 }
 
+function renderWeekView() {
+    const grid = document.getElementById('calendar-grid');
+    grid.innerHTML = '';
+
+    const today = new Date();
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    for (let i = 0; i < 7; i++) {
+        const day = new Date(today);
+        day.setDate(today.getDate() + i);
+
+        const dayE1 = document.createElement('div');
+        dayE1.classList.add('cal-day');
+
+        const isToday = i === 0;
+        if (isToday) dayE1.classList.add('today');
+
+        const dayAssignments = assignments.filter(function(a) {
+            return a.due === day.toISOString().split('T')[0];
+        });
+
+        dayE1.innerHTML = `
+        <span class="cal-day-label">${days[day.getDay()]} ${day.getDate()}</span>
+        ${dayAssignments.map(function(a) {
+            return `<span class="cal-dot" style="background:red">${a.name}</span>`;
+        }).join('')}
+        `;
+
+        grid.appendChild(dayE1);
+    }
+}
+
+function renderMonthView() {
+    const grid = document.getElementById('calendar-grid');
+    grid.innerHTML = '';
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    days.forEach(function(day) {
+        const header = document.createElement('div');
+        header.classList.add('cal-header-cell');
+        header.textContent = day;
+        grid.appendChild(header);
+    });
+
+    for (let i = 0; i < firstDay.getDay(); i++) {
+        const empty = document.createElement('div');
+        empty.classList.add('cal-day', 'empty');
+        grid.appendChild(empty);
+    }
+
+    for (let d = 1; d <= lastDay.getDate(); d++) {
+        const date = new Date(year, month, d);
+        const dateStr = date.toISOString().split('T')[0];
+
+        const dayE1 = document.createElement('div');
+        dayE1.classList.add('cal-day');
+
+        if (d === today.getDate()) dayE1.classList.add('today');
+
+        const dayAssignments = assignments.filter(function(a) {
+            return a.due === dateStr;
+        });
+
+        dayE1.innerHTML = `
+        <span class="cal-day-label">${d}</span>
+        ${dayAssignments.map(function(a) {
+            return `<span class="cal-dot"></span>`;
+        }).join('')}
+        `;
+
+        grid.appendChild(dayE1);
+    }
+}
+
 const binders = document.querySelectorAll('.binder-wrapper');
 const rows = document.querySelectorAll('tbody tr');
 
@@ -154,6 +235,20 @@ form.addEventListener('submit', function(event) {
     form.reset();
 });
 
+document.getElementById('btn-week').addEventListener('click', function() {
+    document.getElementById('btn-week').classList.add('active');
+    document.getElementById('btn-month').classList.remove('active');
+    renderWeekView();
+});
+
+document.getElementById('btn-month').addEventListener('click', function() {
+    document.getElementById('btn-month').classList.add('active');
+    document.getElementById('btn-week').classList.remove('active');
+    renderMonthView();
+});
+
 renderAssignments();
 renderDueSoon();
 renderBinders();
+renderWeekView();
+renderMonthView();
