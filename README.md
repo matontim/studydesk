@@ -22,7 +22,7 @@ StudyDesk is a full-stack study planning application currently in active develop
  
 ## Features
  
-- **Skeuomorphic design**: wood shelf, coloured binders, ruled notebook paper with hole punches, and cork board sticky notes — all built in pure CSS
+- **Skeuomorphic design**: wood shelf, coloured binders, ruled notebook paper with hole punches, and cork board sticky notes
 - **User authentication**: registration and login with per-user data stored on the server
 - **Dynamic subject binders**: auto-generated from assignment data, clickable to filter the assignment list in real time
 - **Assignment management**: add, complete with strikethrough, and delete assignments
@@ -33,7 +33,7 @@ StudyDesk is a full-stack study planning application currently in active develop
  
 ## What I Learned
  
-This project was built incrementally from a static HTML file into a full-stack application — learning CSS layout, DOM manipulation, localStorage, REST APIs, fetch, async/await, and Node.js along the way. Every feature was written without copying boilerplate, which gave me a deep understanding of how the frontend and backend communicate.
+This project was built incrementally from a static HTML file into a full-stack application. Currently learning DOM manipulation, localStorage, REST APIs, fetch, async/await, and Node.js along the way. Every feature was written without copying boilerplate, which gave me a deep understanding of how the frontend and backend communicate.
  
 ---
  
