@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Patrick+Hand&display=swap');
 
-/* Background */
+/* GLOBAL VARIABLES */
+:root {
+    --paper: #fffef0;
+    --text: #1a1a2e;
+}
+/* BACKGROUND */
 
 body {
     margin: 0;
@@ -13,7 +18,56 @@ body {
     padding: 20px 0 0;
 }
 
-/* Binder */
+/* LOGIN FORM */
+#login-form {
+    margin: 50px auto;
+    width: 70%;
+    height: 400px;
+    text-align: center;
+    background-color: var(--paper);
+    box-shadow: 2px 4px 14px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06);
+    padding: 20px;
+}
+
+#login-form input {
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    width: 50%;
+}
+
+#login-form button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    width: 50%;
+}
+
+/* REGISTRATION FORM */
+#register-form {
+    margin: 50px auto;
+    width: 70%;
+    height: 400px;
+    text-align: center;
+    background-color: var(--paper);
+    box-shadow: 2px 4px 14px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06);
+    padding: 20px;
+}
+
+#register-form input {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    width: 50%;
+}
+
+#register-form button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+/* BINDER */
 
 .binder-shelf {
     display: flex;
@@ -71,10 +125,10 @@ body {
     border: 1px solid #888;
 }
 
-/* Shelf */
+/* SHELF */
 
 .shelf-tag {
-    background: #fffef0;
+    background: var(--paper);
     border: 1px solid #c8a060;
     border-top: none;
     padding: 4px 6px 5px;
@@ -101,11 +155,11 @@ body {
     padding: 30px 40px;
 }
 
-/* Assignment Paper */
+/* ASSIGNMENT PAPER */
 
 .paper {
     flex: 1;
-    background-color: #fffef0;
+    background-color: var(--paper);
     line-height: 28px;
     position: relative;
     box-shadow: 2px 4px 14px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06);
@@ -135,23 +189,9 @@ body {
     box-shadow: 4px 6px 20px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,0,0,0.08);
 }
 
-.hole-punch {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 40% 35%, #d8d8d8, #666);
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.6), 0 1px 2px rgba(255,255,255,0.3);
-    position: absolute;
-    left: 17px;
-}
-
-.hole-punch:nth-child(1) { top: 60px; }
-.hole-punch:nth-child(2) { top: 48%; }
-.hole-punch:nth-child(3) { top: calc(100% - 60px); }
-
-h1 {
+h1, h2 {
     font-family: 'Fredoka One', sans-serif;
-    color: #1a1a2e;
+    color: var(--text);
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0;
@@ -160,7 +200,7 @@ h1 {
 
 p {
     font-family: 'Patrick Hand', sans-serif;
-    color: #1a1a2e;
+    color: var(--text);
 }
 
 .assignment-table {
@@ -179,7 +219,7 @@ tr.done td {
 
 th {
     font-family: 'Patrick Hand', serif;
-    color: #1a1a2e;
+    color: var(--text);
     font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -214,7 +254,23 @@ tr:nth-child(even) {
 .dot-med    { background: #c09010; }
 .dot-low    { background: #2a8040; }
 
-/* Sidebar */
+#add-form input {
+    border: 2px dotted grey;
+    border-radius: 5px;
+}
+
+#add-form select {
+    border: 2px dotted grey;
+    border-radius: 5px;
+}
+
+#add-form button {
+    border: 2px dotted grey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* SIDEBAR */
 
 .sidebar {
     display: flex;
@@ -270,7 +326,7 @@ tr:nth-child(even) {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 4px;
-    background-color: #fffef0;
+    background-color: var(--paper);
     padding: 20px;
 }
 
