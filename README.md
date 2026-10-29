@@ -1,6 +1,6 @@
 ## Overview
  
-StudyDesk is a full-stack study planning application currently in active development. StudyDesk was built out of a real frustration: as a student at Boston University, academic information is scattered across a plethora of platforms — course portals, email, department sites, and calendar tools that don't talk to each other. The goal was a single place to consolidate assignments, deadlines, and priorities across every subject. This project is also being built to deepen practical experience with full-stack architecture, REST API design, and frontend-backend communication. The goal is a tool that helps users organize study sessions, track progress, and manage tasks across subjects. The design includes physical binders on a wooden shelf, ruled notebook paper, and a cork board for urgent reminders.
+StudyDesk is a full-stack study planner, currently in active development, built with vanilla JavaScript and a Node.js REST API. It brings together the assignments, deadlines, and priorities that are usually spread across course portals, email, and calendar tools. The frontend talks to the backend through fetch and async/await, and data is stored as JSON on the server. The UI has a skeuomorphic design: binders on a wooden shelf, ruled notebook paper, and a cork board for urgent reminders.
  
 > **Status:** Core features complete. Styling polish and database migration in progress.
  
